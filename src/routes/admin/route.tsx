@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 
-import Header from '@/components/Header'
+import Header from '@/components/Admin/Header'
 import SideNavBar from '@/components/Admin/AdminSideNavBar'
 
 export const Route = createFileRoute('/admin')({

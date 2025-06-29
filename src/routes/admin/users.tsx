@@ -1,3 +1,4 @@
+import UserList from '@/components/Admin/users/UserList'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/admin/users')({
@@ -5,5 +6,5 @@ export const Route = createFileRoute('/admin/users')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/admin/users"!</div>
+  return <UserList />
 }

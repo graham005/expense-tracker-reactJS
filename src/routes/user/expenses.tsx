@@ -1,3 +1,4 @@
+import ExpensesList from '@/components/User/ExpensesList'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/user/expenses')({
@@ -5,5 +6,5 @@ export const Route = createFileRoute('/user/expenses')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/user/expenses"!</div>
+  return <ExpensesList />
 }

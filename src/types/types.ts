@@ -25,3 +25,46 @@ export interface TCategory {
     category_id: string;
     category_name: string;
 }
+
+export interface TCategoryUsageReport {
+    category_id: string;
+    category_name: string;
+    usage_count: string;
+}
+
+export interface TCategoryReport {
+    expense: TExpense
+}
+
+export interface TDailySummaryReport {
+    date: string;
+    totalAmount: number;
+    totalCount: number;
+}
+
+export interface TDailyReport {
+    expense: TExpense
+}
+
+export interface TMonthlySummaryReport {
+    year: number,
+    month: number,
+    totalAmount: number,
+    totalCount: number,
+    averageAmount: number
+}
+
+export interface TMonthlyReport {
+    expense: TExpense
+}
+
+export interface TYearlySummaryReport {
+    year: number,
+    totalAmount: number,
+    totalCount: number,
+    averageAmount: number
+}
+
+export interface TYearlyReport {
+    expense: TExpense
+}
