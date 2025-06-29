@@ -9,13 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UserRouteRouteImport } from './routes/user/route'
 import { Route as AdminRouteRouteImport } from './routes/admin/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UserIndexRouteImport } from './routes/user/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as UserSettingsRouteImport } from './routes/user/settings'
+import { Route as UserReportsRouteImport } from './routes/user/reports'
 import { Route as UserExpensesRouteImport } from './routes/user/expenses'
 import { Route as AdminUsersRouteImport } from './routes/admin/users'
 import { Route as AdminCategoriesRouteImport } from './routes/admin/categories'
 
+const UserRouteRoute = UserRouteRouteImport.update({
+  id: '/user',
+  path: '/user',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRouteRoute = AdminRouteRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -26,15 +35,30 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UserIndexRoute = UserIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => UserRouteRoute,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRouteRoute,
 } as any)
+const UserSettingsRoute = UserSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => UserRouteRoute,
+} as any)
+const UserReportsRoute = UserReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => UserRouteRoute,
+} as any)
 const UserExpensesRoute = UserExpensesRouteImport.update({
-  id: '/user/expenses',
-  path: '/user/expenses',
-  getParentRoute: () => rootRouteImport,
+  id: '/expenses',
+  path: '/expenses',
+  getParentRoute: () => UserRouteRoute,
 } as any)
 const AdminUsersRoute = AdminUsersRouteImport.update({
   id: '/users',
@@ -50,56 +74,90 @@ const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteRouteWithChildren
+  '/user': typeof UserRouteRouteWithChildren
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/users': typeof AdminUsersRoute
   '/user/expenses': typeof UserExpensesRoute
+  '/user/reports': typeof UserReportsRoute
+  '/user/settings': typeof UserSettingsRoute
   '/admin/': typeof AdminIndexRoute
+  '/user/': typeof UserIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/users': typeof AdminUsersRoute
   '/user/expenses': typeof UserExpensesRoute
+  '/user/reports': typeof UserReportsRoute
+  '/user/settings': typeof UserSettingsRoute
   '/admin': typeof AdminIndexRoute
+  '/user': typeof UserIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteRouteWithChildren
+  '/user': typeof UserRouteRouteWithChildren
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/users': typeof AdminUsersRoute
   '/user/expenses': typeof UserExpensesRoute
+  '/user/reports': typeof UserReportsRoute
+  '/user/settings': typeof UserSettingsRoute
   '/admin/': typeof AdminIndexRoute
+  '/user/': typeof UserIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/admin'
+    | '/user'
     | '/admin/categories'
     | '/admin/users'
     | '/user/expenses'
+    | '/user/reports'
+    | '/user/settings'
     | '/admin/'
+    | '/user/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin/categories' | '/admin/users' | '/user/expenses' | '/admin'
+  to:
+    | '/'
+    | '/admin/categories'
+    | '/admin/users'
+    | '/user/expenses'
+    | '/user/reports'
+    | '/user/settings'
+    | '/admin'
+    | '/user'
   id:
     | '__root__'
     | '/'
     | '/admin'
+    | '/user'
     | '/admin/categories'
     | '/admin/users'
     | '/user/expenses'
+    | '/user/reports'
+    | '/user/settings'
     | '/admin/'
+    | '/user/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRouteRoute: typeof AdminRouteRouteWithChildren
-  UserExpensesRoute: typeof UserExpensesRoute
+  UserRouteRoute: typeof UserRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/user': {
+      id: '/user'
+      path: '/user'
+      fullPath: '/user'
+      preLoaderRoute: typeof UserRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -114,6 +172,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/user/': {
+      id: '/user/'
+      path: '/'
+      fullPath: '/user/'
+      preLoaderRoute: typeof UserIndexRouteImport
+      parentRoute: typeof UserRouteRoute
+    }
     '/admin/': {
       id: '/admin/'
       path: '/'
@@ -121,12 +186,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
+    '/user/settings': {
+      id: '/user/settings'
+      path: '/settings'
+      fullPath: '/user/settings'
+      preLoaderRoute: typeof UserSettingsRouteImport
+      parentRoute: typeof UserRouteRoute
+    }
+    '/user/reports': {
+      id: '/user/reports'
+      path: '/reports'
+      fullPath: '/user/reports'
+      preLoaderRoute: typeof UserReportsRouteImport
+      parentRoute: typeof UserRouteRoute
+    }
     '/user/expenses': {
       id: '/user/expenses'
-      path: '/user/expenses'
+      path: '/expenses'
       fullPath: '/user/expenses'
       preLoaderRoute: typeof UserExpensesRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof UserRouteRoute
     }
     '/admin/users': {
       id: '/admin/users'
@@ -161,10 +240,28 @@ const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
   AdminRouteRouteChildren,
 )
 
+interface UserRouteRouteChildren {
+  UserExpensesRoute: typeof UserExpensesRoute
+  UserReportsRoute: typeof UserReportsRoute
+  UserSettingsRoute: typeof UserSettingsRoute
+  UserIndexRoute: typeof UserIndexRoute
+}
+
+const UserRouteRouteChildren: UserRouteRouteChildren = {
+  UserExpensesRoute: UserExpensesRoute,
+  UserReportsRoute: UserReportsRoute,
+  UserSettingsRoute: UserSettingsRoute,
+  UserIndexRoute: UserIndexRoute,
+}
+
+const UserRouteRouteWithChildren = UserRouteRoute._addFileChildren(
+  UserRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRouteRoute: AdminRouteRouteWithChildren,
-  UserExpensesRoute: UserExpensesRoute,
+  UserRouteRoute: UserRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

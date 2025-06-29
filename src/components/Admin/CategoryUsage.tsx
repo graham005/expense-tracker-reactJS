@@ -10,7 +10,7 @@ function CategoryUsage() {
     }))
 
     const COLORS = [
-  "#4CAF50", "#FF9800", "#2196F3", "#E91E63", "#9C27B0", "#FFC107", "#00BCD4", "#8BC34A"
+  "#558C03", "#98BF0A", "#265902", "#f2ffbf", "#e6ff80", "#FFC107", "#00BCD4", "#8BC34A"
 ]
 
 const renderLabel = (entry: any) => entry.name;
