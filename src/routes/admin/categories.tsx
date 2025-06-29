@@ -1,3 +1,4 @@
+import CategoryList from '@/components/Admin/categories/CategoryList'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/admin/categories')({
@@ -5,5 +6,5 @@ export const Route = createFileRoute('/admin/categories')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/admin/categories"!</div>
+  return <CategoryList />
 }

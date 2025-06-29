@@ -13,7 +13,7 @@ function AdminDashboard() {
   } = useAdminDashboard()
 
   return (
-    <div className="flex flex-col gap-6 p-4 sm:p-6 bg-green-50 min-h-screen">
+    <div className="flex flex-col gap-6 p-4 sm:p-6 bg-lime-50 min-h-screen">
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">

@@ -11,7 +11,6 @@ function SideNavBar({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
 
   return (
     <>
-      {/* Backdrop overlay */}
       {open && (
         <div
           className="fixed inset-0 bg-black bg-opacity-30 z-30 md:hidden"
@@ -31,7 +30,6 @@ function SideNavBar({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
           sm:w-48 sm:text-base lg:w-72
         `}
       >
-        {/* Close button for mobile */}
         <button
           type="button"
           className="md:hidden absolute top-4 right-4 bg-white p-2 rounded shadow z-50"
@@ -56,10 +54,10 @@ function SideNavBar({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
               <li key={item.path}>
                 <Link
                   to={item.path}
-                  className={`p-4 block hover:bg-green-500 hover:text-white transition-transform duration-200 hover:scale-105 ${
-                    isActive ? "bg-green-700 text-white" : ""
+                  className={`p-4 block hover:bg-lime-500 hover:text-white transition-transform duration-200 hover:scale-105 ${
+                    isActive ? "bg-lime-700 text-white" : ""
                   }`}
-                  onClick={() => setOpen(false)} // Close sidebar on link click (mobile)
+                  onClick={() => setOpen(false)}
                 >
                   {item.label}
                 </Link>
