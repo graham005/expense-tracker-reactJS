@@ -1,13 +1,12 @@
+import Index from '@/components/LandingPage'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
-  component: App,
+  component: Index,
 })
 
-function App() {
-  return (
-    <div className="text-center">
-      
-    </div>
-  )
-}
+// function App() {
+//   return (
+//     < Index />
+//   )
+// }

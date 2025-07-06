@@ -14,7 +14,7 @@ function RouteComponent() {
   return (
     <div className='flex'>
       <SideNavBar open={sidebarOpen} setOpen={setSidebarOpen} />
-      <div className='flex-1 flex flex-col'>
+      <div className='flex-1 flex flex-col md:ml-60 lg:ml-72 transition-all duration-300'>
         <Header onMenuClick={() => setSidebarOpen(true)} />
         <main>
           <Outlet />
