@@ -1,6 +1,6 @@
 function Header({ onMenuClick }: { onMenuClick?: () => void }) {
   return (
-    <header className="bg-lime-700 shadow-lg p-4 rounded flex flex-col gap-2">
+    <header className="bg-lime-700 shadow-lg p-4 rounded flex flex-col gap-2 ">
       <div className="flex items-center gap-3">
         {onMenuClick && (
           <button

@@ -22,11 +22,12 @@ function SideNavBar({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
       <nav
         id="admin-sidebar"
         className={`
-          bg-white shadow-lg text-black w-60 min-h-screen flex flex-col font-sans font-bold text-lg
+        bg-white shadow-lg text-black w-60 h-screen flex flex-col font-sans font-bold text-lg
           fixed top-0 left-0 z-40
           transition-transform duration-300
+          overflow-y-auto
           ${open ? "translate-x-0" : "-translate-x-full"}
-          md:translate-x-0 md:relative md:w-60
+          md:translate-x-0
           sm:w-48 sm:text-base lg:w-72
         `}
       >
@@ -54,9 +55,8 @@ function SideNavBar({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
               <li key={item.path}>
                 <Link
                   to={item.path}
-                  className={`p-4 block hover:bg-lime-500 hover:text-white transition-transform duration-200 hover:scale-105 ${
-                    isActive ? "bg-lime-700 text-white" : ""
-                  }`}
+                  className={`p-4 block hover:bg-lime-500 hover:text-white transition-transform duration-200 hover:scale-105 ${isActive ? "bg-lime-700 text-white" : ""
+                    }`}
                   onClick={() => setOpen(false)}
                 >
                   {item.label}
